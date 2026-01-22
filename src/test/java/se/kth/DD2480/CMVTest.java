@@ -17,8 +17,11 @@ class CMVTest {
     }
 
     @Test
-    void lic0() {
+    void lic0_returnsFalse_whenPointsIsNull() {
+        CMV cmv = new CMV();
+        assertFalse(cmv.lic0(5.0, null, 0));
     }
+
 
     @Test
     void lic1() {

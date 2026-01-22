@@ -12,9 +12,14 @@ public class CMV {
         this.cmv = new boolean[15];
     }
 
-    boolean lic0() {
+    boolean lic0(double length, Point[] points, int NUMPOINTS) {
+        if(points == null || NUMPOINTS < 2 ){
+            return false;
+        }
+        for (int i = 0; i < NUMPOINTS - 1; ++i) {
+            if (points[i].distance(points[i + 1]) > length) return true;
+        }
         return false;
-
     }
 
     boolean lic1() {
@@ -79,9 +84,9 @@ public class CMV {
 
 
 
-    public boolean[] verifyAllLics() {
+    public boolean[] verifyAllLics(double length, Point[] points, int NUMPOINTS) {
 
-        cmv[0] = lic0();
+        cmv[0] = lic0(length, points, NUMPOINTS);
         cmv[1] = lic1();
         cmv[2] = lic2();
         cmv[3] = lic3();
