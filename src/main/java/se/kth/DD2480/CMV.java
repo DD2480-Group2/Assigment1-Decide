@@ -22,7 +22,27 @@ public class CMV {
         return false;
     }
 
-    boolean lic1() {
+    boolean lic1(Point[] points, int NUMPOINTS, double RADIUS1) {
+        if(points == null || NUMPOINTS < 3) {
+            return false;
+        }
+        for (int i = 0; i < NUMPOINTS-3; i++) {
+
+            //r = abc/4A where r is radius of the triangles Circumcircle, a,b,c is the length of the sides between the points and A is the triangles Area
+            Point a = points[i];
+            Point b = points[i+1];
+            Point c = points[i+2];
+            double sideA = a.distance(b);
+            double sideB = b.distance(c);
+            double sideC = c.distance(a);
+            double area = Point.triangleArea(a, b, c);
+
+            //r = abc/4A
+            double circumradius = (sideA*sideB*sideC)/(4*area);
+            if (circumradius > RADIUS1) {
+                return true;
+            }
+        }
         return false;
     }
 
@@ -102,10 +122,10 @@ public class CMV {
 
 
 
-    public boolean[] verifyAllLics(double LENGTH1, Point[] points, int NUMPOINTS, int E_PTS, int F_PTS, double AREA1) {
+    public boolean[] verifyAllLics(double LENGTH1, Point[] points, int NUMPOINTS, int E_PTS, int F_PTS, double AREA1, double RADIUS1) {
 
         cmv[0] = lic0(points, LENGTH1, NUMPOINTS);
-        cmv[1] = lic1();
+        cmv[1] = lic1(points, NUMPOINTS, RADIUS1);
         cmv[2] = lic2();
         cmv[3] = lic3();
         cmv[4] = lic4();
