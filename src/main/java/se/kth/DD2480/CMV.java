@@ -48,7 +48,30 @@ public class CMV {
         return false;
     }
 
-    boolean lic6() {
+    boolean lic6(Point[] points, int NUMPOINTS, int N_PTS, double DIST){
+        if (points == null || NUMPOINTS < 3 || N_PTS < 3 || N_PTS > NUMPOINTS || DIST < 0) {
+            return false;
+        }
+        for (int i = 0; i < NUMPOINTS - N_PTS +1; ++i) {
+            Point firsPoint = points[i];
+            Point lastPoint = points[i + N_PTS -1];
+            //if points are the same, check distance to first point
+            if (firsPoint.distance(lastPoint) < 0.000001) {
+                for (int j = i+1; j < i + N_PTS -1; ++j) {
+                    if (points[j].distance(firsPoint) > DIST) {
+                        return true;
+                    }
+                }
+            } else { //if points are different, check distance to line
+                for (int j = i+1; j < i + N_PTS -1; ++j) {
+                    //equation for distance from point to line given by two points
+                    double distance = Math.abs((lastPoint.y - firsPoint.y) * points[j].x - (lastPoint.x - firsPoint.x) * points[j].y + lastPoint.x * firsPoint.y - lastPoint.y * firsPoint.x) / firsPoint.distance(lastPoint);
+                    if (distance > DIST) {
+                        return true;
+                    }
+                }
+            }
+        }
         return false;
     }
 
