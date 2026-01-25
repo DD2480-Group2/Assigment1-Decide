@@ -28,7 +28,7 @@ public class CMV {
 
     boolean lic2(Point[] points, int NUMPOINTS, double PI, double EPSILON) {
 
-        if (points == null || points.length < 3 || NUMPOINTS > points.length)
+        if (points == null || points.length < 3 || NUMPOINTS > points.length || NUMPOINTS < 3 || EPSILON != 0.000001)
             return false;
 
         for (int i = 1; i < NUMPOINTS - 1; i++) {
