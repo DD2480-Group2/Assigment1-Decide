@@ -45,12 +45,36 @@ class CMVTest {
 
         assertTrue(cmv.lic0(points, 5.0, points.length));
     }
+ 
+    void lic1_anyinput() {
+        CMV cmv = new CMV();
+        Point p1 = new Point(0,0);
+        Point p2 = new Point(10,0);
+        Point[] points = {p1, p2};
+        assertFalse(cmv.lic1(points, 2, 1));
+    }
 
+    @Test
+    void lic1_returnsTrue_whenRadiusBiggerThanRADIUS1() {
+        CMV cmv = new CMV();
+        Point p1 = new Point(0,0);
+        Point p2 = new Point(1,0);
+        Point p3 = new Point(10,0);
+        Point p4 = new Point(0,10);
+        Point[] points = {p1, p2, p3, p4};
+        assertTrue(cmv.lic1(points, 4, 5));
+    }
 
 
 
     @Test
-    void lic1() {
+    void lic1_invalid_input() {
+        CMV cmv = new CMV();
+        Point p1 = new Point(0,0);
+        Point p2 = new Point(10,0);
+        Point p3 = new Point(0,10);
+        Point[] points = {p1, p2, p3};
+        assertFalse(cmv.lic1(points, 3, -1));
     }
 
     @Test
