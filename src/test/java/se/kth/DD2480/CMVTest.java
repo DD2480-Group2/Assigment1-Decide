@@ -394,7 +394,45 @@ class CMVTest {
     }
 
     @Test
-    void lic11() {
+    void lic11_returnsTrueForLastThreeElements() {
+        CMV cmv = new CMV();
+        Point[] points = {
+                new Point(6, 1),
+                new Point(7, 4),
+                new Point(8, 3),
+                new Point(9, 0),
+                new Point(0, 0)
+        };
+        
+        assertTrue(cmv.lic11(points, points.length, 1));
+    }
+
+    @Test
+    void lic11_returnsFalseForRisingXValues() {
+        CMV cmv = new CMV();
+        Point[] points = {
+                new Point(1, 1),
+                new Point(2, 4),
+                new Point(3, 3),
+                new Point(4, 0),
+                new Point(5, 0)
+        };
+        
+        assertFalse(cmv.lic11(points, points.length, 1));
+    }
+
+    @Test
+    void lic11_returnsFalseForG_PTSBeingLargerThanNUMPOINTSMinusTwo() {
+        CMV cmv = new CMV();
+        Point[] points = {
+                new Point(1, 1),
+                new Point(2, 4),
+                new Point(3, 3),
+                new Point(4, 0),
+                new Point(5, 0)
+        };
+        
+        assertFalse(cmv.lic11(points, points.length, 4));
     }
 
     @Test
