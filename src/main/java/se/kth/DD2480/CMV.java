@@ -29,25 +29,13 @@ public class CMV {
             return false;
         }
         for (int i = 0; i < NUMPOINTS-2; i++) {
-
-            //r = abc/4A where r is radius of the triangles Circumcircle, a,b,c is the length of the sides between the points and A is the triangles Area
             Point a = points[i];
             Point b = points[i+1];
             Point c = points[i+2];
-            double sideA = a.distance(b);
-            double sideB = b.distance(c);
-            double sideC = c.distance(a);
-            double area = Point.triangleArea(a, b, c);
-            if (area < 0.000001) {
-                if (sideA/2 > RADIUS1 || sideB/2 > RADIUS1 || sideC/2 > RADIUS1) {
-                    return true;
-                }
-            } else {
-                //r = abc/4A
-                double circumradius = (sideA*sideB*sideC)/(4*area);
-                if (circumradius > RADIUS1) {
-                    return true;
-                }
+
+            double mecRadius = (Point.minimalEnclosingCircleRadius(a, b, c));
+            if (mecRadius > RADIUS1) {
+                return true;
             }
         }
         return false;
