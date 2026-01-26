@@ -124,6 +124,7 @@ class CMVTest {
 
     @Test
     void lic7_returnTrue_WhenTwoPointsSepByK_PTSareMoreThanLENGTH1apart() {
+        CMV cmv = new CMV();
         Point[] points = {new Point(-1, -1), new Point(1, 0), new Point(5, 5)};
 
         assertTrue(cmv.lic7(points, 3, 3, 1)); // POINTS, NUMPOINTS, LENGHT1, K_PTS
@@ -131,6 +132,7 @@ class CMVTest {
 
     @Test
     void lic7_returnFalse_WhenTwoPointsSepByK_PTSareLENGTH1apart() {
+        CMV cmv = new CMV();
         Point[] points = {new Point(0, 0), new Point(1, 0), new Point(3, 0)};
 
         assertFalse(cmv.lic7(points, 3, 3, 1)); // POINTS, NUMPOINTS, LENGHT1, K_PTS
@@ -138,6 +140,7 @@ class CMVTest {
 
     @Test
     void lic7_returnFalse_WhenTwoPointsSepByK_PTSareLessThanLENGTH1apart() {
+        CMV cmv = new CMV();
         Point[] points = {new Point(0, 0), new Point(1, 0), new Point(2, 0)};
 
         assertFalse(cmv.lic7(points, 3, 3, 1)); // POINTS, NUMPOINTS, LENGHT1, K_PTS
@@ -145,6 +148,7 @@ class CMVTest {
 
     @Test
     void lic7_returnFalse_WhenInvalidInput() {
+        CMV cmv = new CMV();
         Point[] points = {new Point(0, 0), new Point(1, 0), new Point(2, 0)};
 
         assertFalse(cmv.lic7(points, 2, 3, 1)); // NUMPOINTS invalid
