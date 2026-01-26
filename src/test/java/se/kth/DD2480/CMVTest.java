@@ -7,9 +7,10 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class CMVTest {
-
+    CMV cmv;
     @BeforeEach
     void setUp() {
+        CMV cmv = new CMV();
     }
 
     @AfterEach
@@ -279,8 +280,56 @@ class CMVTest {
     void lic11() {
     }
 
+    /**
+     * Tests if two separate pairs K_PTS apart fit criteria.
+     * Criteria for LIC to be true: One pair more than LENGHT1 apart and one pair less than LENGTH2 apart
+     */
     @Test
-    void lic12() {
+    void lic12_returnsTrue_whenTwoSeparatePairsOfPointsK_PTSapartFitCriteria() {
+        CMV cmv = new CMV();
+        // points[0] and points[2] are more than 3 apart
+        // points[1] and points[3] are less than 2 apart
+        Point[] points = {new Point(-1, -1), new Point(1, 0), new Point(5, 5), new Point(0, 1) };
+
+        assertTrue(cmv.lic12(points, 4, 3, 2, 1)); // POINTS, NUMPOINTS, LENGHT1, LENGHT2, K_PTS
+    }
+
+    /**
+     * Criteria for LIC to be true: One pair more than LENGHT1 apart and one pair less than LENGTH2 apart
+     */
+    @Test
+    void lic12_returnsFalse_whenOnlyOnePairFitsCriteria() {
+        CMV cmv = new CMV();
+        // points[0] and points[2] are more than 3 apart
+        // No pair of paint with 1 element in between are less than 1 distance apart.
+        Point[] points = {new Point(-1, -1), new Point(1, 0), new Point(5, 5), new Point(0, 1) };
+
+        assertFalse(cmv.lic12(points, 4, 3, 1, 1)); // POINTS, NUMPOINTS, LENGHT1, LENGHT2, K_PTS
+    }
+
+    @Test
+    void lic12_returnsFalse_whenNoPairFitsCriteria() {
+        CMV cmv = new CMV();
+        // No pair of paint with 1 element in between are more than 10 distance apart.
+        // No pair of paint with 1 element in between are less than 1 distance apart.
+        Point[] points = {new Point(-1, -1), new Point(1, 0), new Point(5, 5), new Point(0, 1) };
+
+        assertFalse(cmv.lic12(points, 4, 10, 1, 1)); // POINTS, NUMPOINTS, LENGHT1, LENGHT2, K_PTS
+    }
+
+    @Test
+    void lic12_returnsFalse_whenInputParamIsInvalid() {
+        CMV cmv = new CMV();
+        // Valid points for LIC to return true
+        Point[] points = {new Point(-1, -1), new Point(1, 0), new Point(5, 5), new Point(0, 1) };
+
+        assertFalse(cmv.lic12(points, 2, 10, 1, 1));        // NUMPOINTS invalid
+        assertFalse(cmv.lic12(points, 4, 10, -1, 1));       // LENGTH2   invalid
+        assertFalse(cmv.lic12(points, 4, 10, 1, 3));        // K_PTS     invalid in regard to NUMPOINTS
+        assertFalse(cmv.lic12(null, 4, 10, 1, 1));    // POINTS    invalid
+
+
+
     }
 
     @Test
