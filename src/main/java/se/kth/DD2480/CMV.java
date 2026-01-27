@@ -151,7 +151,17 @@ public class CMV {
         return false;
     }
 
-    boolean lic7() {
+    boolean lic7(Point[] points, int NUMPOINTS, double LENGTH1, int K_PTS) {
+        if (points == null || NUMPOINTS < 3 || points.length < NUMPOINTS || K_PTS < 1 || K_PTS > (NUMPOINTS-2))
+            return false;
+
+        for (int i = 0; i < NUMPOINTS - K_PTS - 1; i++) {
+            Point a = points[i];
+            Point b = points[i + K_PTS + 1];
+
+            if (a.distance(b) > LENGTH1)
+                return true;
+        }
         return false;
     }
 
@@ -221,7 +231,7 @@ public class CMV {
         cmv[4] = lic4(points, NUMPOINTS, p.Q_PTS, p.QUADS);
         cmv[5] = lic5(points, NUMPOINTS);
         cmv[6] = lic6(points, NUMPOINTS, p.N_PTS, p.DIST);
-        cmv[7] = lic7();
+        cmv[7] = lic7(points, NUMPOINTS, p.LENGTH1, p.K_PTS);
         cmv[8] = lic8();
         cmv[9] = lic9();
         cmv[10] = lic10(points,p.E_PTS,p.F_PTS,p.AREA1,NUMPOINTS);
