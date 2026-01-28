@@ -173,9 +173,46 @@ public class CMV {
         return false;
     }
 
-    boolean lic9() {
+    boolean lic9(Point[] points, int NUMPOINTS, int C_PTS, int D_PTS, double PI, double EPSILON) {
+        // point 1 --> C_PTS --> point 2 --> D_PTS --> point 3
+        assert points != null : "'points' must not be null";
+        assert NUMPOINTS >= 5 : "'NUMPOINTS' must be >= 5";
+        assert C_PTS >= 1 : "'C_PTS' must be >= 1";
+        assert D_PTS >= 1 : "'D_PTS' must be >= 1";
+        assert C_PTS + D_PTS <= NUMPOINTS - 3 : "C_PTS + D_PTS must be <= NUMPOINTS - 3";
+        assert EPSILON >= 0 : "'EPSILON' must be >= 0";
+        assert EPSILON < PI : "'EPSILON' must be lesser than 'PI'";
+
+        for(int i = 1; i <= NUMPOINTS - 3 - (C_PTS + D_PTS) + 1; i++) {
+
+            Point a = points[i-1];
+            Point b = points[i + C_PTS];
+            Point c = points[i + C_PTS + D_PTS + 1];
+
+            double ab = a.distance(b);
+            double cb = b.distance(c);
+
+            // If either a or c coincides with b we skip to next triplet or points
+            if (ab < 0.000001 || cb < 0.000001)
+                continue;
+
+            // Vectors
+            Point u = new Point(a.x - b.x, a.y - b.y);
+            Point v = new Point(c.x - b.x, c.y - b.y);
+
+            double numerator    = u.x*v.x + u.y*v.y;
+            double denominator  = ab * cb;
+            double cos = numerator / denominator;
+
+            double angle = Math.acos(cos);
+
+            if (angle < (PI - EPSILON) || angle > (PI + EPSILON))
+                return true;
+        }
         return false;
     }
+
+
 
     boolean lic10(Point[] points, int E_PTS, int F_PTS, double AREA1, int NUMPOINTS){
         if (points == null || NUMPOINTS < 5 || !(E_PTS >= 1) || !(F_PTS >= 1)
@@ -255,7 +292,29 @@ public class CMV {
         return !radius1Contains && radius2Contains;
     }
 
-    boolean lic14() {
+    boolean lic14(Point[] points, int NUMPOINTS, int E_PTS, int F_PTS, double AREA1, double AREA2) {
+        assert points != null : "'points' must not be null";
+        assert NUMPOINTS >= 5 : "'NUMPOINTS' must be >= 5";
+        assert E_PTS >= 1 : "'E_PTS' must be >= 1";
+        assert F_PTS >= 1 : "'F_PTS' must be >= 1";
+        assert E_PTS + F_PTS <= NUMPOINTS - 3 : "E_PTS + F_PTS must be <= NUMPOINTS - 3";
+        assert AREA1 >= 0 : "'AREA1' must be >= 0";
+        assert AREA2 >= 0 : "'AREA2' must be >= 0";
+
+        boolean area1Condition = false;
+        boolean area2Condition = false;
+        for(int i = 1; i <= NUMPOINTS - 3 - (E_PTS + F_PTS) + 1; i++) {
+
+            Point a = points[i-1];
+            Point b = points[i + E_PTS];
+            Point c = points[i + E_PTS + F_PTS + 1];
+
+            double area = Point.triangleArea(a, b, c);
+
+            if(area > AREA1) area1Condition = true;
+            if(area < AREA2) area2Condition = true;
+            if(area1Condition && area2Condition) return true;
+        }
         return false;
     }
 
@@ -276,12 +335,12 @@ public class CMV {
         cmv[6] = lic6(points, NUMPOINTS, p.N_PTS, p.DIST);
         cmv[7] = lic7(points, NUMPOINTS, p.LENGTH1, p.K_PTS);
         cmv[8] = lic8(points, NUMPOINTS, p.A_PTS, p.B_PTS, p.RADIUS1);
-        cmv[9] = lic9();
+        cmv[9] = lic9(points, NUMPOINTS, p.C_PTS, p.D_PTS, 3.1415926535, p.EPSILON);
         cmv[10] = lic10(points,p.E_PTS,p.F_PTS,p.AREA1,NUMPOINTS);
         cmv[11] = lic11(points, NUMPOINTS, p.G_PTS);
         cmv[12] = lic12(points, NUMPOINTS, p.LENGTH1, p.LENGTH2, p.K_PTS);
         cmv[13] = lic13(points, NUMPOINTS, p.A_PTS, p.B_PTS, p.RADIUS1, p.RADIUS2);
-        cmv[14] = lic14();
+        cmv[14] = lic14(points, NUMPOINTS, p.E_PTS, p.F_PTS, p.AREA1, p.AREA2);
         cmv[15] = lic15();
 
         return cmv;
