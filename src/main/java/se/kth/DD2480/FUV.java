@@ -2,7 +2,7 @@ package se.kth.DD2480;
 
 public class FUV {
     boolean[] arr; //vector
-    boolean launch; //true if all elements in vector is true
+    boolean launch; //true if all elements in vector is true, to access use object.launch
 
     public FUV() {
         this.arr = new boolean[15];
@@ -27,16 +27,5 @@ public class FUV {
             }
             this.arr[i] = allTrue;
         }
-    }
-
-    public boolean checkLaunch(){ //check if all elements in FUV is true
-        this.launch = true;
-        for (int i = 0; i < 15; i++) {
-            if (!this.arr[i]) {
-                this.launch = false;
-                break;
-            }
-        }
-        return this.launch;
     }
 }
