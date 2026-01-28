@@ -407,6 +407,19 @@ class CMVTest {
     }
 
     @Test
+    void lic6_returnsTrueForLastThreeElements() {
+        CMV cmv = new CMV();
+        Point[] points = {
+                new Point(0, 0),
+                new Point(1, 0),
+                new Point(3, 0),
+                new Point(1, 0)
+        };
+
+        assertTrue(cmv.lic6(points, points.length, 3, 1));
+    }
+
+    @Test
     void lic6_returnsFalseForNoPointFurtherAwayThanDist() {
         CMV cmv = new CMV();
         Point[] points = {
@@ -420,33 +433,29 @@ class CMVTest {
     }
 
     @Test
-    void lic6_returnsFalseForNegativeDist() {
+    void lic6_throwErrorWhenPointsIsNULL() {
         CMV cmv = new CMV();
-        Point[] points = {
-                new Point(0, 0),
-                new Point(1, 0),
-                new Point(3, 0),
-                new Point(1, 0)
-        };
-
-        assertFalse(cmv.lic6(points, points.length, 3, -1));
+        AssertionError error = assertThrows(AssertionError.class, () -> {
+            cmv.lic6(null, 3, 5, 1);
+        });
+        assertEquals("'points' must not be null", error.getMessage());
     }
 
     @Test
-    void lic6_returnsFalseForN_PTSBeingLargerThanNUMPOINTS() {
+    void lic6_throwErrorWhenNUMPOINTSLessThan3() {
         CMV cmv = new CMV();
         Point[] points = {
                 new Point(0, 0),
-                new Point(1, 0),
-                new Point(3, 0),
                 new Point(1, 0)
         };
-
-        assertFalse(cmv.lic6(points, points.length, 5, 1));
+        AssertionError error = assertThrows(AssertionError.class, () -> {
+            cmv.lic6(points, points.length, 2, 1);
+        });
+        assertEquals("'NUMPOINTS' must be >= 3", error.getMessage());
     }
 
     @Test
-    void lic6_returnsTrueForLastThreeElements() {
+    void lic6_throwErrorWhenNUMPOINTSNotSameAsNumOfPoints() {
         CMV cmv = new CMV();
         Point[] points = {
                 new Point(0, 0),
@@ -454,8 +463,55 @@ class CMVTest {
                 new Point(3, 0),
                 new Point(1, 0)
         };
+        AssertionError error = assertThrows(AssertionError.class, () -> {
+            cmv.lic6(points, 5, 3, 1);
+        });
+        assertEquals("'NUMPOINTS' must equal points.length", error.getMessage());
+    }
 
-        assertTrue(cmv.lic6(points, points.length, 3, 1));
+    @Test
+    void lic6_throwErrorWhenN_PTSIsLessThan3() {
+        CMV cmv = new CMV();
+        Point[] points = {
+                new Point(0, 0),
+                new Point(1, 0),
+                new Point(3, 0),
+                new Point(1, 0)
+        };
+        AssertionError error = assertThrows(AssertionError.class, () -> {
+            cmv.lic6(points, points.length, 2, 1);
+        });
+        assertEquals("'N_PTS' must be >= 3", error.getMessage());
+    }
+
+    @Test
+    void lic6_throwErrorWhenN_PTSIsLargerThanNUMPOINTS() {
+        CMV cmv = new CMV();
+        Point[] points = {
+                new Point(0, 0),
+                new Point(1, 0),
+                new Point(3, 0),
+                new Point(1, 0)
+        };
+        AssertionError error = assertThrows(AssertionError.class, () -> {
+            cmv.lic6(points, points.length, 5, 1);
+        });
+        assertEquals("'N_PTS' must be <= 'NUMPOINTS'", error.getMessage());
+    }
+
+    @Test
+    void lic6_throwErrorWhenDistIsNegative() {
+        CMV cmv = new CMV();
+        Point[] points = {
+                new Point(0, 0),
+                new Point(1, 0),
+                new Point(3, 0),
+                new Point(1, 0)
+        };
+        AssertionError error = assertThrows(AssertionError.class, () -> {
+            cmv.lic6(points, points.length, 3, -1);
+        });
+        assertEquals("'DIST' must be >= 0", error.getMessage());
     }
 
     @Test

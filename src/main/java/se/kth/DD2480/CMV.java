@@ -124,9 +124,13 @@ public class CMV {
     }
 
     boolean lic6(Point[] points, int NUMPOINTS, int N_PTS, double DIST){
-        if (points == null || NUMPOINTS < 3 || N_PTS < 3 || N_PTS > NUMPOINTS || DIST < 0) {
-            return false;
-        }
+        assert points != null : "'points' must not be null";
+        assert NUMPOINTS >= 3 : "'NUMPOINTS' must be >= 3";
+        assert NUMPOINTS == points.length : "'NUMPOINTS' must equal points.length";
+        assert N_PTS >= 3 : "'N_PTS' must be >= 3";
+        assert N_PTS <= NUMPOINTS : "'N_PTS' must be <= 'NUMPOINTS'";
+        assert DIST >= 0 : "'DIST' must be >= 0";
+
         for (int i = 0; i < NUMPOINTS - N_PTS +1; ++i) {
             Point firsPoint = points[i];
             Point lastPoint = points[i + N_PTS -1];
