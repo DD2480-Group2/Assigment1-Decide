@@ -114,9 +114,6 @@ public class CMV {
     }
 
     boolean lic5(Point[] points, int NUMPOINTS){
-        if (points == null || NUMPOINTS < 2) {
-            return false;
-        }
         assert points != null : "'points' must not be null";
         assert NUMPOINTS >= 2 : "'NUMPOINTS' must be >= 2";
         assert points.length == NUMPOINTS : "'points.length' must be equal 'NUMPOINTS'";
