@@ -1,9 +1,9 @@
 package se.kth.DD2480;
 
 public class PUV {
-    boolean[] arr;
+    private boolean[] arr;
 
-    public PUV(boolean[] arr) {
-        this.arr = arr;
+    public PUV () {
+        arr = new boolean[15];
     }
 }
