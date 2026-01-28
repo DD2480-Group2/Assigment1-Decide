@@ -6,4 +6,13 @@ public class PUV {
     public PUV () {
         arr = new boolean[15];
     }
+
+    public void setIndex(int i, boolean value) {
+        checkIndex(i);
+        arr[i] = value;
+    }
+
+    private void checkIndex(int i) {
+        if (i < 0 || i > 14) throw new IndexOutOfBoundsException("Allowed index is [0, 14]");
+    }
 }
