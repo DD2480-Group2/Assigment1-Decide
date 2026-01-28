@@ -182,10 +182,6 @@ public class CMV {
             Point b = points[i + C_PTS];
             Point c = points[i + C_PTS + D_PTS + 1];
 
-            System.out.println("index: + " + (i-1));
-            System.out.println("index: + " + (i+C_PTS));
-            System.out.println("index: + " + (i+C_PTS + D_PTS+1));
-
             double ab = a.distance(b);
             double cb = b.distance(c);
 
