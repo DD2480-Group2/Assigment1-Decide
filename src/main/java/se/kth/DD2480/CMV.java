@@ -175,7 +175,14 @@ public class CMV {
 
     boolean lic9(Point[] points, int NUMPOINTS, int C_PTS, int D_PTS, double PI, double EPSILON) {
         // point 1 --> C_PTS --> point 2 --> D_PTS --> point 3
-        if(NUMPOINTS < 5 || C_PTS < 1 || D_PTS < 1 || (C_PTS + D_PTS > NUMPOINTS-3) ) return false;
+        assert points != null : "'points' must not be null";
+        assert NUMPOINTS >= 5 : "'NUMPOINTS' must be >= 5";
+        assert C_PTS >= 1 : "'C_PTS' must be >= 1";
+        assert D_PTS >= 1 : "'D_PTS' must be >= 1";
+        assert C_PTS + D_PTS <= NUMPOINTS - 3 : "C_PTS + D_PTS must be <= NUMPOINTS - 3";
+        assert EPSILON >= 0 : "'EPSILON' must be >= 0";
+        assert EPSILON < PI : "'EPSILON' must be lesser than 'PI'";
+
         for(int i = 1; i <= NUMPOINTS - 3 - (C_PTS + D_PTS) + 1; i++) {
 
             Point a = points[i-1];
