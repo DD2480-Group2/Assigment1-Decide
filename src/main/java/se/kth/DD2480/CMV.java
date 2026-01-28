@@ -176,6 +176,7 @@ public class CMV {
         assert B_PTS >= 1 : "'B_PTS' must be >= 1";
         assert A_PTS + B_PTS <= NUMPOINTS - 3 : "A_PTS + B_PTS must be <= NUMPOINTS - 3";
         assert RADIUS1 >= 0 : "'RADIUS1' must be >= 0";
+        assert RADIUS2 >= 0 : "'RADIUS2' must be >= 0";
 
         boolean radius1Contains = true;
         boolean radius2Contains = false;

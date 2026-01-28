@@ -630,6 +630,22 @@ class CMVTest {
     }
 
     @Test
+    void lic13_throwsError_whenRADIUS2LessThan0() {
+        CMV cmv = new CMV();
+        Point[] points = {
+                new Point(0, 0),
+                new Point(1, 0),
+                new Point(2, 0),
+                new Point(3, 0),
+                new Point(4, 0)
+        };
+        AssertionError error = assertThrows(AssertionError.class, () -> {
+            cmv.lic13(points, points.length, 1, 1, 1.0, -1.0);
+        });
+        assertEquals("'RADIUS2' must be >= 0", error.getMessage());
+    }
+
+    @Test
     void lic13_returnsFalse_radius1CannotContain_radius2CannotContain() {
         CMV cmv = new CMV();
         Point[] points = {
