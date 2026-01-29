@@ -41,8 +41,10 @@ Java JDK version 21
 Maven version 3.9.12
 
 ## Statement of Contribution
-Adam Egnell:       LIC 1,6,11 and related tests, FUV and related tests.  
-Ahmed Baccar:      LIC 0,5,10 and related tests, PUM, Parts of Point.  
-Kevin Löv:         LIC 2,7,12 and related tests, Lead on Way-of-Working and README, LCM and related tests, DECIDE() tests  
-Samuel Peetre:     LIC 3,8,13 and related tests, Related method in point.  
-Teoman Köylüoglu:  LIC 4,9,14 and related tests, Tests for PUM, setup Maven and Github Actions, program-flow, DECIDE().  
+| Name             | GitHub       | What                                                                                                   |
+|------------------|--------------|--------------------------------------------------------------------------------------------------------|
+| Adam Egnell      | Eggetxd      | LIC 1,6,11 and related tests, FUV and related tests.                                                   |
+| Ahmed Baccar     | AhmedBaccar  | LIC 0,5,10 and related tests, PUM, Parts of Point.                                                     |
+| Kevin Löv        | KevinLov     | LIC 2,7,12 and related tests, Lead on Way-of-Working and README, LCM and related tests, DECIDE() tests |
+| Samuel Peetre:   | samuelpeetre | LIC 3,8,13 and related tests, Related method in point.                                                 |
+| Teoman Köylüoglu | Laafayeette  | LIC 4,9,14 and related tests, Tests for PUM, setup Maven and Github Actions, program-flow, DECIDE().   |
