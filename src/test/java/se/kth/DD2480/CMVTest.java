@@ -604,6 +604,11 @@ class CMVTest {
         assertTrue(cmv.lic5(pts, 3)); // 0.5 - 1 < 0
     }
 
+    /**
+     * Given N_PTS, the first and last of which form a line or a point
+     * returns true if atleast one point in between is further away from the line than DIST
+     * the method returns true for the last 3 elements
+     */
     @Test
     void lic6_returnsTrueForLastThreeElements() {
         CMV cmv = new CMV();
@@ -617,6 +622,11 @@ class CMVTest {
         assertTrue(cmv.lic6(points, points.length, 3, 1));
     }
 
+    /**
+     * Given N_PTS, the first and last of which form a line or a point
+     * returns true if atleast one point in between is further away from the line than DIST
+     * the method returns false since no point is further away than DIST
+     */
     @Test
     void lic6_returnsFalseForNoPointFurtherAwayThanDist() {
         CMV cmv = new CMV();
@@ -630,6 +640,11 @@ class CMVTest {
         assertFalse(cmv.lic6(points, points.length, 3, 2.0));
     }
 
+    /**
+     * The method requires 'points' to be non-null.
+     * If points == null, the method throws AssertionError
+     * with message "'points' must not be null".
+     */
     @Test
     void lic6_throwErrorWhenPointsIsNULL() {
         CMV cmv = new CMV();
@@ -639,6 +654,11 @@ class CMVTest {
         assertEquals("'points' must not be null", error.getMessage());
     }
 
+    /**
+     * The method requires 'NUMPOINTS' >= 3.
+     * If NUMPOINTS < 3, the method throws AssertionError
+     * with message "'NUMPOINTS' must be >= 3".
+     */
     @Test
     void lic6_throwErrorWhenNUMPOINTSLessThan3() {
         CMV cmv = new CMV();
@@ -652,6 +672,11 @@ class CMVTest {
         assertEquals("'NUMPOINTS' must be >= 3", error.getMessage());
     }
 
+    /**
+     * The method requires 'NUMPOINTS' == 'points.length'.
+     * If NUMPOINTS != 'points.length', the method throws AssertionError
+     * with message "'NUMPOINTS' must equal points.length".
+     */
     @Test
     void lic6_throwErrorWhenNUMPOINTSNotSameAsNumOfPoints() {
         CMV cmv = new CMV();
@@ -667,6 +692,11 @@ class CMVTest {
         assertEquals("'NUMPOINTS' must equal points.length", error.getMessage());
     }
 
+    /**
+     * The method requires 'N_PTS' >= 3.
+     * If N_PTS < 3, the method throws AssertionError
+     * with message "'N_PTS' must be >= 3".
+     */
     @Test
     void lic6_throwErrorWhenN_PTSIsLessThan3() {
         CMV cmv = new CMV();
@@ -682,6 +712,11 @@ class CMVTest {
         assertEquals("'N_PTS' must be >= 3", error.getMessage());
     }
 
+    /**
+     * The method requires 'N_PTS' <= 'NUMPOINTS'.
+     * If 'N_PTS' != 'NUMPOINTS', the method throws AssertionError
+     * with message "'N_PTS' must be <= 'NUMPOINTS'".
+     */
     @Test
     void lic6_throwErrorWhenN_PTSIsLargerThanNUMPOINTS() {
         CMV cmv = new CMV();
@@ -697,6 +732,11 @@ class CMVTest {
         assertEquals("'N_PTS' must be <= 'NUMPOINTS'", error.getMessage());
     }
 
+    /**
+     * The method requires 'DIST' >= 0.
+     * If DIST < 0, the method throws AssertionError
+     * with message "'DIST' must be >= 0".
+     */
     @Test
     void lic6_throwErrorWhenDistIsNegative() {
         CMV cmv = new CMV();
