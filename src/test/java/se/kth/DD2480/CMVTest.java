@@ -434,21 +434,36 @@ class CMVTest {
         assertTrue(err.getMessage().contains("'Q_PTS' must be > QUADS"));
     }
 
-
-
-
     @Test
-    void lic5_nullPoints_returnsFalse() {
+    void lic5_throwErrorWhenPointsIsNull() {
         CMV cmv = new CMV();
-        assertFalse(cmv.lic5(null, 2));
+
+        AssertionError error = assertThrows(AssertionError.class, () -> {
+            cmv.lic5(null, 2);
+        });
+        assertEquals("'points' must not be null", error.getMessage());
     }
 
     @Test
-    void lic5_NUMPOINTS_lessThan2_returnsFalse() {
+    void lic5_throwErrorWhenNUMPOINTSLessThan2() {
         CMV cmv = new CMV();
         Point[] pts = { new Point(0, 0), new Point(-1, 0) };
-        assertFalse(cmv.lic5(pts, 0));
-        assertFalse(cmv.lic5(pts, 1));
+
+        AssertionError error = assertThrows(AssertionError.class, () -> {
+            cmv.lic5(pts, 1);
+        });
+        assertEquals("'NUMPOINTS' must be >= 2", error.getMessage());
+    }
+
+    @Test
+    void lic5_throwErrorWhenNUMPOINTSNotSameAsNumOfPoints() {
+        CMV cmv = new CMV();
+        Point[] pts = { new Point(0, 0), new Point(-1, 0) };
+
+        AssertionError error = assertThrows(AssertionError.class, () -> {
+            cmv.lic5(pts, 4);
+        });
+        assertEquals("'points.length' must be equal 'NUMPOINTS'", error.getMessage());
     }
 
     @Test
