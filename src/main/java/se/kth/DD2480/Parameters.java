@@ -56,11 +56,11 @@ public class Parameters {
         public static Parameters createParameters(int mode) {
         return switch (mode) {
             case 1 -> new Parameters(
-                    0,0,
-                    0,0,0,0,
-                    0,0,0,0,0,
-                    0,0,0,0,0,
-                    0,0,0);
+                    3,2,
+                    1,3,0.000001,1, //lic10 wants AREA1 = 1.999999
+                    0.6,2,1,1,3,
+                    1,1,1,1,1,
+                    1,1,1);
             case 2 -> new Parameters(1,1,
                     1,1,1,0,
                     0,0,0,0,0,
