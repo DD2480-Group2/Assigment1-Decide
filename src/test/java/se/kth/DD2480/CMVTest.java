@@ -948,43 +948,86 @@ class CMVTest {
         assertTrue(err.getMessage().contains("'EPSILON' must be lesser than 'PI'"));
     }
 
-
-
-
-
-
-
     @Test
-    void lic10_nullPoints_returnsFalse() {
+    void lic10_throwErrorWhenPointsIsNull() {
         CMV cmv = new CMV();
-        assertFalse(cmv.lic10(null, 1, 1, 1.0, 5));
+
+        AssertionError error = assertThrows(AssertionError.class, () -> {
+            cmv.lic10(null, 1, 1, 1.0, 5);
+        });
+        assertEquals("'points' must not be null", error.getMessage());
     }
 
     @Test
-    void lic10_NUMPOINTS_lessThan5_returnsFalse() {
+    void lic10_throwErrorWhenNUMPOINTSLessThan5() {
         CMV cmv = new CMV();
         Point[] pts = { new Point(0,0), new Point(0,0), new Point(2,0), new Point(0,0),
                 new Point(0,2) };
-        assertFalse(cmv.lic10(pts, 1, 1, 0.1, 4));
+
+        AssertionError error = assertThrows(AssertionError.class, () -> {
+            cmv.lic10(pts, 1, 1, 0.1, 4);
+        });
+        assertEquals("'NUMPOINTS' must be >= 5", error.getMessage());
     }
 
     @Test
-    void lic10_EPTS_or_FPTS_lessThan1_returnsFalse() {
+    void lic10_throwErrorWhenNUMPOINTSNotSameAsNumOfPoints() {
         CMV cmv = new CMV();
         Point[] pts = { new Point(0,0), new Point(0,0), new Point(2,0), new Point(0,0),
                 new Point(0,2) };
-        assertFalse(cmv.lic10(pts, 0, 1, 0.1, 5));
-        assertFalse(cmv.lic10(pts, 1, 0, 0.1, 5));
-        assertFalse(cmv.lic10(pts, -1, 1, 0.1, 5));
+
+        AssertionError error = assertThrows(AssertionError.class, () -> {
+            cmv.lic10(pts, 1, 1, 0.1, 6);
+        });
+        assertEquals("'NUMPOINTS' must equal points.length", error.getMessage());
     }
 
     @Test
-    void lic10_EplusF_greaterThan_NUMPOINTSminus3_returnsFalse() {
+    void lic10_throwErrorWhenE_PTSLessThan1() {
+        CMV cmv = new CMV();
+        Point[] pts = { new Point(0,0), new Point(0,0), new Point(2,0), new Point(0,0),
+                new Point(0,2) };
+
+        AssertionError error = assertThrows(AssertionError.class, () -> {
+            cmv.lic10(pts, 0, 1, 0.1, 5);
+        });
+        assertEquals("'E_PTS' must be >= 1", error.getMessage());
+    }
+
+    @Test
+    void lic10_throwErrorWhenF_PTSLessThan1() {
+        CMV cmv = new CMV();
+        Point[] pts = { new Point(0,0), new Point(0,0), new Point(2,0), new Point(0,0),
+                new Point(0,2) };
+
+        AssertionError error = assertThrows(AssertionError.class, () -> {
+            cmv.lic10(pts, 1, 0, 0.1, 5);
+        });
+        assertEquals("'F_PTS' must be >= 1", error.getMessage());
+    }
+
+    @Test
+    void lic10_throwErrorWhenE_PTSPlusF_PTSIsGreaterThanNUMPOINTSMinus3() {
         CMV cmv = new CMV();
         Point[] pts = { new Point(0,0), new Point(0,0), new Point(2,0), new Point(0,0),
                 new Point(0,2) };
         // NUMPOINTS=5 => NUMPOINTS-3 = 2. If E+F=3 => invalid
-        assertFalse(cmv.lic10(pts, 1, 2, 0.1, 5));
+        AssertionError error = assertThrows(AssertionError.class, () -> {
+            cmv.lic10(pts, 1, 2, 0.1, 5);
+        });
+        assertEquals("E_PTS + F_PTS must be <= NUMPOINTS - 3", error.getMessage());
+    }
+
+    @Test
+    void lic10_throwErrorWhenAREA1LessThan0() {
+        CMV cmv = new CMV();
+        Point[] pts = { new Point(0,0), new Point(0,0), new Point(2,0), new Point(0,0),
+                new Point(0,2) };
+
+        AssertionError error = assertThrows(AssertionError.class, () -> {
+            cmv.lic10(pts, 1, 1, -1, 5);
+        });
+        assertEquals("'AREA1' must be >= 0", error.getMessage());
     }
 
     @Test
@@ -997,11 +1040,18 @@ class CMVTest {
     }
 
     @Test
-    void lic10_areaStrictlyGreaterThanAREA1_true_equal_false() {
+    void lic10_returnTrueWhenAreaGreaterThanAREA1() {
         CMV cmv = new CMV();
         Point[] pts = { new Point(0,0), new Point(0,0), new Point(2,0), new Point(0,0),
                 new Point(0,2) }; // area=2
         assertTrue(cmv.lic10(pts, 1, 1, 1.9999, 5));
+    }
+
+    @Test
+    void lic10_returnFalseWhenAreaEqualAREA1() {
+        CMV cmv = new CMV();
+        Point[] pts = { new Point(0,0), new Point(0,0), new Point(2,0), new Point(0,0),
+                new Point(0,2) }; // area=2
         assertFalse(cmv.lic10(pts, 1, 1, 2.0, 5)); // NOT >
     }
 

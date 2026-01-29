@@ -239,10 +239,14 @@ public class CMV {
 
 
     boolean lic10(Point[] points, int E_PTS, int F_PTS, double AREA1, int NUMPOINTS){
-        if (points == null || NUMPOINTS < 5 || !(E_PTS >= 1) || !(F_PTS >= 1)
-                || !(E_PTS + F_PTS <= NUMPOINTS - 3)) {
-            return false;
-        }
+        assert points != null : "'points' must not be null";
+        assert NUMPOINTS >= 5 : "'NUMPOINTS' must be >= 5";
+        assert NUMPOINTS == points.length : "'NUMPOINTS' must equal points.length";
+        assert E_PTS >= 1 : "'E_PTS' must be >= 1";
+        assert F_PTS >= 1 : "'F_PTS' must be >= 1";
+        assert E_PTS + F_PTS <= NUMPOINTS - 3 : "E_PTS + F_PTS must be <= NUMPOINTS - 3";
+        assert AREA1 >= 0 : "'AREA1' must be >= 0";
+
         for(int i = 0; i < NUMPOINTS - (E_PTS + F_PTS + 2 ); ++i){
             Point p1 = points[i];
             Point p2 = points[i+E_PTS+1];
