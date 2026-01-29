@@ -144,6 +144,11 @@ class CMVTest {
         assertEquals("'points.length' must be == 'NUMPOINTS'", error.getMessage());
     }
 
+    /**
+     * Given three points where the angle between them is less than PI − EPSILON (180° − EPSILON),
+     * the method returns true.
+     * Angles greater than PI + EPSILON also return true, since the method evaluates the smaller of the two angles.
+     */
     @Test
     void lic2_returnsTrue_whenAngleIsLessThanPiMinusEpsilon() {
         CMV cmv = new CMV();
@@ -151,7 +156,9 @@ class CMVTest {
 
         assertTrue(cmv.lic2(points90degrees, 3, 3.1415926535, 0.000001)); // Points, NUMPOINTS, PI, EPSILON
     }
-
+    /**
+     * Given three point where two collide, the method will return false.
+     */
     @Test
     void lic2_returnsFalse_whenPointsCollide() {
         CMV cmv = new CMV();
@@ -160,6 +167,11 @@ class CMVTest {
         assertFalse(cmv.lic2(collidingPoints, 3, 3.1415926535, 0.000001)); // Points, NUMPOINTS, PI, EPSILON
     }
 
+    /**
+     * The method requires 'points' to be non-null.
+     * If points == null, the method throws AssertionError
+     * with message "'points' must not be null".
+     */
     @Test
     void lic2_throwsError_whenPointsNull() {
         CMV cmv = new CMV();
@@ -170,6 +182,11 @@ class CMVTest {
         assertEquals("'points' must not be null", error.getMessage());
     }
 
+    /**
+     * The method requires 'NUMPOINTS' >= 3.
+     * If NUMPOINTS < 3, the method throws AssertionError
+     * with message "'NUMPOINTS' must be >= 3".
+     */
     @Test
     void lic2_throwsError_whenNUMPOINTSLessThan3() {
         CMV cmv = new CMV();
@@ -184,6 +201,11 @@ class CMVTest {
         assertEquals("'NUMPOINTS' must be >= 3", error.getMessage());
     }
 
+    /**
+     * The method requires 'NUMPOINTS' == 'points.length'.
+     * If NUMPOINTS != 'points.length', the method throws AssertionError
+     * with message "'NUMPOINTS' must equal points.length".
+     */
     @Test
     void lic2_throwsError_whenNUMPOINTSNotEqualLength() {
         CMV cmv = new CMV();
@@ -198,6 +220,11 @@ class CMVTest {
         assertEquals("'NUMPOINTS' must equal points.length", error.getMessage());
     }
 
+    /**
+     * The method requires 'EPSILON' > 0.
+     * If 'EPSILON' < 0, the method throws AssertionError
+     * with message "'EPSILON' must be >= 0".
+     */
     @Test
     void lic2_throwsError_whenEPSILONNegative() {
         CMV cmv = new CMV();
@@ -212,6 +239,11 @@ class CMVTest {
         assertEquals("'EPSILON' must be >= 0", error.getMessage());
     }
 
+    /**
+     * The method requires 'EPSILON' < 'PI'.
+     * If 'EPSILON' > 'PI', the method throws AssertionError
+     * with message "'EPSILON' must be < PI".
+     */
     @Test
     void lic2_throwsError_whenEPSILONTooLarge() {
         CMV cmv = new CMV();
@@ -226,6 +258,11 @@ class CMVTest {
         assertEquals("'EPSILON' must be < PI", error.getMessage());
     }
 
+    /**
+     * The method requires 'PI' == 3.1415926535.
+     * If 'PI' != 3.1415926535, the method throws AssertionError
+     * with message "'PI' must be equal to 3.1415926535".
+     */
     @Test
     void lic2_throwsError_whenPIWrong() {
         CMV cmv = new CMV();
@@ -240,6 +277,10 @@ class CMVTest {
         assertEquals("'PI' must be equal to 3.1415926535", error.getMessage());
     }
 
+    /**
+     * Given three points that are on a straight line, the method should return false.
+     * Since three points on a straight line does not fall outside angle < PI - EPSILON OR angle > PI + EPSILON
+     */
     @Test
     void lic2_returnsFalse_whenPointsAreOnStraightLine() {
         CMV cmv = new CMV();
