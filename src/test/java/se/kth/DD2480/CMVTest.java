@@ -75,6 +75,10 @@ class CMVTest {
         assertFalse(cmv.lic0(pts, 2.0, 2)); // dist=2 NOT > 2
     }
 
+    /**
+     * Given 3 consecutive points that form a triangle with circumradius larger than RADIUS1
+     * The function returns true.
+     */
     @Test
     void lic1_returnsTrue_whenRadiusBiggerThanRADIUS1() {
         CMV cmv = new CMV();
@@ -86,6 +90,10 @@ class CMVTest {
         assertTrue(cmv.lic1(points, 4, 5));
     }
 
+    /**
+     * No 3 consecutive points form a triangle with circumradius larger than RADIUS1
+     * The function returns false.
+     */
     @Test
     void lic1_returnsFalse_whenRadiusSmallerThanRADIUS1() {
         CMV cmv = new CMV();
@@ -97,6 +105,11 @@ class CMVTest {
         assertFalse(cmv.lic1(points, 4, 50));
     }
 
+    /**
+     * The method requires 'RADIUS1' to be a positive number.
+     * If RADIUS1 < 0, the method throws AssertionError
+     * with message "'RADIUS1' must be >= 0".
+     */
     @Test
     void lic1_throwsErrorWhenRADIUS1LessThan0() {
         CMV cmv = new CMV();
@@ -110,6 +123,11 @@ class CMVTest {
         assertEquals("'RADIUS1' must be >= 0", error.getMessage());
     }
 
+    /**
+     * The method requires 'points' to be non-null.
+     * If points == null, the method throws AssertionError
+     * with message "'points' must not be null".
+     */
     @Test
     void lic1_throwsError_whenPointsIsNull() {
         CMV cmv = new CMV();
@@ -119,6 +137,11 @@ class CMVTest {
         assertEquals("'points' must not be null", error.getMessage());
     }
 
+    /**
+     * The method requires 'NUMPOINTS' >= 3.
+     * If NUMPOINTS < 3, the method throws AssertionError
+     * with message "'NUMPOINTS' must be >= 3".
+     */
     @Test
     void lic1_throwsErrorWhenNumpointsLessThan3() {
         CMV cmv = new CMV();
@@ -131,6 +154,11 @@ class CMVTest {
         assertEquals("'NUMPOINTS' must be >= 3", error.getMessage());
     }
 
+    /**
+     * The method requires 'points.length' == 'NUMPOINTS'.
+     * If 'points.length' != 'NUMPOINTS', the method throws AssertionError
+     * with message "'points.length' must be == 'NUMPOINTS'".
+     */
     @Test
     void lic1_throwsErrorWhenNumpointsNotSameAsNumOfPoints() {
         CMV cmv = new CMV();
