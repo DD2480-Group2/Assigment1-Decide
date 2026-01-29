@@ -1002,6 +1002,10 @@ class CMVTest {
         assertTrue(err.getMessage().contains("'EPSILON' must be lesser than 'PI'"));
     }
 
+    /**
+     * The method should throw AssertionError if {@code points == null}
+     */
+
     @Test
     void lic10_throwErrorWhenPointsIsNull() {
         CMV cmv = new CMV();
@@ -1012,6 +1016,9 @@ class CMVTest {
         assertEquals("'points' must not be null", error.getMessage());
     }
 
+    /**
+     * The method should throw AssertionError if @code NUMPOINTS is less than 5}
+     */
     @Test
     void lic10_throwErrorWhenNUMPOINTSLessThan5() {
         CMV cmv = new CMV();
@@ -1024,6 +1031,9 @@ class CMVTest {
         assertEquals("'NUMPOINTS' must be >= 5", error.getMessage());
     }
 
+    /**
+     * The method should throw AssertionError if @code NUMPOINTS != points.length}
+     */
     @Test
     void lic10_throwErrorWhenNUMPOINTSNotSameAsNumOfPoints() {
         CMV cmv = new CMV();
@@ -1036,6 +1046,9 @@ class CMVTest {
         assertEquals("'NUMPOINTS' must equal points.length", error.getMessage());
     }
 
+    /**
+     * The method should throw AssertionError if {@code E_PTS} is less than 1
+     */
     @Test
     void lic10_throwErrorWhenE_PTSLessThan1() {
         CMV cmv = new CMV();
@@ -1048,6 +1061,9 @@ class CMVTest {
         assertEquals("'E_PTS' must be >= 1", error.getMessage());
     }
 
+    /**
+     * The method should throw AssertionError if {@code F_PTS} is less than 1
+     */
     @Test
     void lic10_throwErrorWhenF_PTSLessThan1() {
         CMV cmv = new CMV();
@@ -1060,6 +1076,9 @@ class CMVTest {
         assertEquals("'F_PTS' must be >= 1", error.getMessage());
     }
 
+    /**
+     * The method should throw AssertionError if {@code E_PTS + F_PTS} is less than {@code NUMPOINT - 3}
+     */
     @Test
     void lic10_throwErrorWhenE_PTSPlusF_PTSIsGreaterThanNUMPOINTSMinus3() {
         CMV cmv = new CMV();
@@ -1072,6 +1091,9 @@ class CMVTest {
         assertEquals("E_PTS + F_PTS must be <= NUMPOINTS - 3", error.getMessage());
     }
 
+    /**
+     * The method should throw AssertionError if {@code AREA1} is less than 0
+     */
     @Test
     void lic10_throwErrorWhenAREA1LessThan0() {
         CMV cmv = new CMV();
@@ -1084,6 +1106,9 @@ class CMVTest {
         assertEquals("'AREA1' must be >= 0", error.getMessage());
     }
 
+    /**
+     * The method should allow {@code E_PTS + F_PTS = NUMPOINT - 3}
+     */
     @Test
     void lic10_boundary_EplusF_equalTo_NUMPOINTSminus3_isAllowed() {
         CMV cmv = new CMV();
@@ -1093,6 +1118,9 @@ class CMVTest {
         assertTrue(cmv.lic10(pts, 1, 1, 1.0, 5));
     }
 
+    /**
+     * The method should return {@code true} if the area formed by the 3 points is greater than {@code AREA1}
+     */
     @Test
     void lic10_returnTrueWhenAreaGreaterThanAREA1() {
         CMV cmv = new CMV();
@@ -1101,6 +1129,9 @@ class CMVTest {
         assertTrue(cmv.lic10(pts, 1, 1, 1.9999, 5));
     }
 
+    /**
+     * The method should return {@code true} if the area formed by the 3 points is less than {@code AREA1}
+     */
     @Test
     void lic10_returnFalseWhenAreaEqualAREA1() {
         CMV cmv = new CMV();
