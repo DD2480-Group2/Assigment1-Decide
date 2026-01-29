@@ -16,6 +16,10 @@ class LCMTest {
     void tearDown() {
     }
 
+    /**
+     * Creating an LCM with createLCM with parameter 0 as mode will return the LCM full of NOTUSED.
+     * Test returns true is all elements in matrix is NOTUSED.
+     */
     @Test
     void creatLCMwith0isFilledWithNOTUSED() {
         LCM lcm = LCM.createLCM(0);
@@ -26,6 +30,10 @@ class LCMTest {
         }
     }
 
+    /**
+     * Creating an LCM with createLCM with parameter 1 as mode will return the LCM full of ANDD.
+     * Test returns true is all elements in matrix is ANDD.
+     */
     @Test
     void creatLCMwith1isFilledWithANDD() {
         LCM lcm = LCM.createLCM(1);
@@ -37,6 +45,10 @@ class LCMTest {
 
     }
 
+    /**
+     * Creating an LCM with createLCM with parameter 2 as mode will return the LCM full of ORR.
+     * Test returns true is all elements in matrix is ORR.
+     */
     @Test
     void creatLCMwith2isFilledWithORR() {
         LCM lcm = LCM.createLCM(2);
@@ -48,6 +60,10 @@ class LCMTest {
 
     }
 
+    /**
+     * Creating an LCM with createLCM with parameter that is not 0, 1 or 2 as mode will Throw IllegalArgumentException.
+     * Test returns true if IllegalArgumentException is thrown when we call the method with all other values than 0, 1 and 2q
+     */
     @Test
     void creatLCMwithInvalidThrowsException() {
         assertThrows(IllegalArgumentException.class, () -> LCM.createLCM(-1));
