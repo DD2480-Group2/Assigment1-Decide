@@ -354,12 +354,6 @@ public class CMV {
         return false;
     }
 
-    boolean lic15() {
-        return false;
-    }
-
-
-
     public boolean[] verifyAllLics(Parameters p, Point[] points, int NUMPOINTS) {
 
         cmv[0] = lic0(points, p.LENGTH1, NUMPOINTS);
@@ -377,7 +371,6 @@ public class CMV {
         cmv[12] = lic12(points, NUMPOINTS, p.LENGTH1, p.LENGTH2, p.K_PTS);
         cmv[13] = lic13(points, NUMPOINTS, p.A_PTS, p.B_PTS, p.RADIUS1, p.RADIUS2);
         cmv[14] = lic14(points, NUMPOINTS, p.E_PTS, p.F_PTS, p.AREA1, p.AREA2);
-        cmv[15] = lic15();
 
         return cmv;
     }
