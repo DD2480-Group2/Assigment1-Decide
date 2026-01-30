@@ -16,6 +16,11 @@ class PointTest {
     void tearDown() {
     }
 
+    /**
+     * Given three points that together form a triangle with a non-zero area,
+     * the method returns the radius of the minimal enclosing circle for that triangle,
+     * within a tolerance of 0.000001.
+     */
     @Test
     void mecRadius_testTriangleWithNonZeroArea() {
         Point a = new Point(0, 8);
@@ -25,6 +30,11 @@ class PointTest {
         assertEquals(5.0, Point.minimalEnclosingCircleRadius(a, b, c), 0.000001);
     }
 
+    /**
+     * Given three collinear points,
+     * the method returns the radius of the minimal enclosing circle for these points,
+     * within a tolerance of 0.000001.
+     */
     @Test
     void mecRadius_testTriangleWithCollinearVertices() {
         Point a = new Point(0, 0);
