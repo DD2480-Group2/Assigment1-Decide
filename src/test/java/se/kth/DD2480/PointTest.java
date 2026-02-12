@@ -17,7 +17,7 @@ class PointTest {
     }
 
     /**
-     * Given three points that together form a 22222triangle with a non-zero area,
+     * Given three points that together form a 2222212triangle with a non-zero area,
      * the method returns the radius of the minimal enclosing circle for that triangle,
      * within a tolerance of 0.000001.
      */
