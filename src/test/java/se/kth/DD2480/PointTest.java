@@ -37,7 +37,7 @@ class PointTest {
      */
     @Test
     void mecRadius_testTriangleWithCollinearVertices() {
-        Point a = new Point(1, 0);
+        Point a = new Point(0, 0);
         Point b = new Point(10, 0);
         Point c = new Point(15, 0);
 
