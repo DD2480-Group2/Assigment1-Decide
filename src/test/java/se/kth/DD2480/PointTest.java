@@ -31,7 +31,7 @@ class PointTest {
     }
 
     /**
-     * Given three collinear points,
+     * Given three collinear pointws,
      * the method returns the radius of the minimal enclosing circle for these points,
      * within a tolerance of 0.000001.
      */
