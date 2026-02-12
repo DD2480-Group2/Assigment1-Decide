@@ -9,7 +9,7 @@ public class LCM {
         this.arr = arr;
     }
 
-    //A random comment1 1223123132141234121233
+    //A random comment1 1223123132141234121212333
     public CONNECTORS[][] getArr() {
         return arr;
     }
