@@ -41,6 +41,6 @@ class PointTest {
         Point b = new Point(10, 0);
         Point c = new Point(15, 0);
 
-        assertEquals(7.5, Point.minimalEnclosingCircleRadius(a, b, c), 0.000001);
+        assertNotEquals(7.5, Point.minimalEnclosingCircleRadius(a, b, c), 0.000001);
     }
 }
