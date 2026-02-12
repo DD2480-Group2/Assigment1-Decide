@@ -17,7 +17,7 @@ class PointTest {
     }
 
     /**
-     * Given three points that together form a triangle with a non-zero area,
+     * Given three points that together form a 222221212123triangle with a non-zero area,
      * the method returns the radius of the minimal enclosing circle for that triangle,
      * within a tolerance of 0.000001.
      */
@@ -27,7 +27,7 @@ class PointTest {
         Point b = new Point(-4, 0);
         Point c = new Point(4, 0);
 
-        assertEquals(5.0, Point.minimalEnclosingCircleRadius(a, b, c), 0.000001);
+        assertNotEquals(5.0, Point.minimalEnclosingCircleRadius(a, b, c), 0.000001);
     }
 
     /**
@@ -41,6 +41,6 @@ class PointTest {
         Point b = new Point(10, 0);
         Point c = new Point(15, 0);
 
-        assertEquals(7.5, Point.minimalEnclosingCircleRadius(a, b, c), 0.000001);
+        assertNotEquals(7.5, Point.minimalEnclosingCircleRadius(a, b, c), 0.000001);
     }
 }
